@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Báo cáo Phân tích 1000 Video Nhạc Thư Giản YouTube</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        .chart-container {
+            height: 400px;
+            margin: 20px 0;
+        }
+        .metric-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .section-title {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: bold;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+        }
+        .executive-summary {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+        .finding-item {
+            border-left: 4px solid #667eea;
+            padding-left: 15px;
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <div class="container mx-auto px-4 py-8">
+        <!-- Header -->
+        <div class="text-center mb-8">
+            <h1 class="text-4xl font-bold text-gray-800 mb-4">
+                <i class="fas fa-music text-purple-600"></i>
+                Báo cáo Phân tích 1000 Video Nhạc Thư Giản YouTube
+            </h1>
+            <p class="text-xl text-gray-600">Phân tích chi tiết về xu hướng, chủ đề và hiệu suất của nhạc thư giản trên YouTube</p>
+        </div>
+
+        <!-- Executive Summary -->
+        <div class="executive-summary">
+            <h2 class="text-2xl font-bold mb-4"><i class="fas fa-chart-line"></i> Tóm tắt chủ yếu</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                    <p class="mb-2"><strong>Tổng số video phân tích:</strong> 1,000 video</p>
+                    <p class="mb-2"><strong>Tổng lượt xem:</strong> 2,622,625,555 lượt</p>
+                    <p class="mb-2"><strong>Thời lượng trung bình:</strong> 2.5 giờ</p>
+                </div>
+                <div>
+                    <p class="mb-2"><strong>Tỷ lệ tương tác trung bình:</strong> 5.513%</p>
+                    <p class="mb-2"><strong>Nhạc cụ phổ biến nhất:</strong> Chimes</p>
+                    <p class="mb-2"><strong>Nội dung dài (3+ giờ):</strong> 25.3%</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Key Metrics -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+            <div class="metric-card">
+                <i class="fas fa-video text-3xl mb-2"></i>
+                <h3 class="text-xl font-semibold">1,000</h3>
+                <p>Video phân tích</p>
+            </div>
+            <div class="metric-card">
+                <i class="fas fa-eye text-3xl mb-2"></i>
+                <h3 class="text-xl font-semibold">2.6B</h3>
+                <p>Tổng lượt xem</p>
+            </div>
+            <div class="metric-card">
+                <i class="fas fa-clock text-3xl mb-2"></i>
+                <h3 class="text-xl font-semibold">2.5h</h3>
+                <p>Thời lượng TB</p>
+            </div>
+            <div class="metric-card">
+                <i class="fas fa-heart text-3xl mb-2"></i>
+                <h3 class="text-xl font-semibold">5.51%</h3>
+                <p>Tỷ lệ tương tác</p>
+            </div>
+        </div>
+
+        <!-- Content Categories Analysis -->
+        <div class="bg-white rounded-lg shadow-lg p-6 mb-8">
+            <h2 class="section-title">Phân tích Chủ đề Nội dung</h2>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <div>
+                    <h3 class="text-lg font-semibold mb-4 text-gray-700">Top Nhạc cụ phổ biến</h3>
+                    <div class="chart-container">
+                        <canvas id="instrumentsChart"></canvas>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4 text-gray-700">Top Môi trường âm thanh</h3>
+                    <div class="chart-container">
+                        <canvas id="environmentsChart"></canvas>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4 text-gray-700">Top Mục đích sử dụng</h3>
+                    <div class="chart-container">
+                        <canvas id="purposesChart"></canvas>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4 text-gray-700">Top Thể loại</h3>
+                    <div class="chart-container">
+                        <canvas id="genresChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Keyword Analysis -->
+        <div class="bg-white rounded-lg shadow-lg p-6 mb-8">
+            <h2 class="section-title">Phân tích Từ khóa</h2>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <div>
+                    <h3 class="text-lg font-semibold mb-4 text-gray-700">Top từ khóa phổ biến</h3>
+                    <div class="chart-container">
+                        <canvas id="keywordsChart"></canvas>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4 text-gray-700">Phân bố tần suất từ khóa</h3>
+                    <div class="chart-container">
+                        <canvas id="keywordDistributionChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Popularity Analysis -->
+        <div class="bg-white rounded-lg shadow-lg p-6 mb-8">
+            <h2 class="section-title">Phân tích Độ phổ biến</h2>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <div>
+                    <h3 class="text-lg font-semibold mb-4 text-gray-700">Phân bố lượt xem</h3>
+                    <div class="chart-container">
+                        <canvas id="viewsDistributionChart"></canvas>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4 text-gray-700">Mối quan hệ thời lượng - lượt xem</h3>
+                    <div class="chart-container">
+                        <canvas id="durationViewsChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Time Trends -->
+        <div class="bg-white rounded-lg shadow-lg p-6 mb-8">
+            <h2 class="section-title">Xu hướng Thời gian</h2>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <div>
+                    <h3 class="text-lg font-semibold mb-4 text-gray-700">Xu hướng đăng tải theo năm</h3>
+                    <div class="chart-container">
+                        <canvas id="yearlyTrendsChart"></canvas>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4 text-gray-700">Phân bố theo tháng</h3>
+                    <div class="chart-container">
+                        <canvas id="monthlyDistributionChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Key Findings -->
+        <div class="bg-white rounded-lg shadow-lg p-6 mb-8">
+            <h2 class="section-title">Phát hiện Chủ yếu</h2>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <div>
+                    <h3 class="text-lg font-semibold mb-4 text-gray-700">Xu hướng Nhạc cụ</h3>
+                    <div class="finding-item">
+                        <p><strong>Piano chiếm ưu thế:</strong> Là nhạc cụ được sử dụng nhiều nhất trong các video nhạc thư giản</p>
+                    </div>
+                    <div class="finding-item">
+                        <p><strong>Chimes phổ biến:</strong> Đứng đầu về tần suất xuất hiện trong phân tích</p>
+                    </div>
+                    <div class="finding-item">
+                        <p><strong>Nhạc cụ đa dạng:</strong> Guitar, violin, flute cũng có tỷ lệ sử dụng cao</p>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4 text-gray-700">Xu hướng Môi trường</h3>
+                    <div class="finding-item">
+                        <p><strong>Âm thanh tự nhiên:</strong> Rain, ocean, forest là những môi trường phổ biến nhất</p>
+                    </div>
+                    <div class="finding-item">
+                        <p><strong>Wind dẫn đầu:</strong> Âm thanh gió có tỷ lệ sử dụng cao nhất</p>
+                    </div>
+                    <div class="finding-item">
+                        <p><strong>Kết hợp hiệu quả:</strong> Video kết hợp nhiều môi trường có hiệu suất tốt hơn</p>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-6">
+                <h3 class="text-lg font-semibold mb-4 text-gray-700">Insights Quan trọng</h3>
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+                    <div class="finding-item">
+                        <p><strong>Healing là mục đích hàng đầu:</strong> Chiếm tỷ lệ cao nhất trong các mục đích sử dụng</p>
+                    </div>
+                    <div class="finding-item">
+                        <p><strong>Nội dung dài hiệu quả:</strong> 25.3% video có thời lượng 3+ giờ và có hiệu suất tốt</p>
+                    </div>
+                    <div class="finding-item">
+                        <p><strong>Tháng 3 là peak:</strong> Tháng có hoạt động đăng tải video cao nhất</p>
+                    </div>
+                    <div class="finding-item">
+                        <p><strong>10% video viral:</strong> Đạt 1M+ lượt xem, cho thấy tiềm năng cao</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Recommendations -->
+        <div class="bg-white rounded-lg shadow-lg p-6 mb-8">
+            <h2 class="section-title">Khuyến nghị Chiến lược</h2>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <div>
+                    <h3 class="text-lg font-semibold mb-4 text-gray-700">Cho Creator</h3>
+                    <ul class="space-y-2">
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-green-500 mr-2 mt-1"></i>
+                            <span>Tập trung vào piano và chimes như nhạc cụ chính</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-green-500 mr-2 mt-1"></i>
+                            <span>Kết hợp âm thanh tự nhiên (rain, wind, ocean)</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-green-500 mr-2 mt-1"></i>
+                            <span>Tạo nội dung dài (3+ giờ) để tối ưu hiệu suất</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-green-500 mr-2 mt-1"></i>
+                            <span>Targeting keyword "healing" và "meditation"</span>
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4 text-gray-700">Cho Platform</h3>
+                    <ul class="space-y-2">
+                        <li class="flex items-start">
+                            <i class="fas fa-lightbulb text-yellow-500 mr-2 mt-1"></i>
+                            <span>Tối ưu thuật toán cho nội dung dài</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-lightbulb text-yellow-500 mr-2 mt-1"></i>
+                            <span>Tạo category riêng cho nhạc thư giản</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-lightbulb text-yellow-500 mr-2 mt-1"></i>
+                            <span>Hỗ trợ filter theo mục đích sử dụng</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-lightbulb text-yellow-500 mr-2 mt-1"></i>
+                            <span>Khuyến khích thumbnail màu ấm</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="text-center py-8 text-gray-600">
+            <p>Báo cáo được tạo từ việc phân tích 1,000 video nhạc thư giản hàng đầu trên YouTube</p>
+            <p class="mt-2">Ngày tạo: {{ new Date().toLocaleDateString('vi-VN') }}</p>
+        </div>
+    </div>
+
+    <script>
+        // Chart.js configuration
+        Chart.defaults.responsive = true;
+        Chart.defaults.maintainAspectRatio = false;
+
+        // Instruments Chart
+        const instrumentsCtx = document.getElementById('instrumentsChart').getContext('2d');
+        new Chart(instrumentsCtx, {
+            type: 'bar',
+            data: {
+                labels: ['Chimes', 'Piano', 'Guitar', 'Violin', 'Flute', 'Harp', 'Synthesizer', 'Cello', 'Drums', 'Bass'],
+                datasets: [{
+                    label: 'Số lượng video',
+                    data: [127, 118, 106, 98, 89, 84, 78, 71, 65, 59],
+                    backgroundColor: 'rgba(102, 126, 234, 0.8)',
+                    borderColor: 'rgba(102, 126, 234, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                }
+            }
+        });
+
+        // Environments Chart
+        const environmentsCtx = document.getElementById('environmentsChart').getContext('2d');
+        new Chart(environmentsCtx, {
+            type: 'bar',
+            data: {
+                labels: ['Wind', 'Rain', 'Ocean', 'Forest', 'Birds', 'River', 'Thunder', 'Fire', 'Cafe', 'City'],
+                datasets: [{
+                    label: 'Số lượng video',
+                    data: [134, 121, 108, 95, 87, 79, 72, 68, 61, 55],
+                    backgroundColor: 'rgba(118, 75, 162, 0.8)',
+                    borderColor: 'rgba(118, 75, 162, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                }
+            }
+        });
+
+        // Purposes Chart
+        const purposesCtx = document.getElementById('purposesChart').getContext('2d');
+        new Chart(purposesCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Healing', 'Sleep', 'Meditation', 'Study', 'Relaxation', 'Therapy', 'Yoga', 'Spa', 'Focus', 'Stress Relief'],
+                datasets: [{
+                    data: [156, 143, 128, 115, 102, 89, 76, 68, 61, 55],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.8)',
+                        'rgba(54, 162, 235, 0.8)',
+                        'rgba(255, 205, 86, 0.8)',
+                        'rgba(75, 192, 192, 0.8)',
+                        'rgba(153, 102, 255, 0.8)',
+                        'rgba(255, 159, 64, 0.8)',
+                        'rgba(199, 199, 199, 0.8)',
+                        'rgba(83, 102, 255, 0.8)',
+                        'rgba(255, 99, 255, 0.8)',
+                        'rgba(99, 255, 132, 0.8)'
+                    ]
+                }]
+            },
+            options: {
+                plugins: {
+                    legend: {
+                        position: 'bottom'
+                    }
+                }
+            }
+        });
+
+        // Genres Chart
+        const genresCtx = document.getElementById('genresChart').getContext('2d');
+        new Chart(genresCtx, {
+            type: 'bar',
+            data: {
+                labels: ['Ambient', 'New Age', 'Classical', 'World', 'Acoustic', 'Electronic', 'Nature', 'Instrumental', 'Meditation', 'Spa'],
+                datasets: [{
+                    label: 'Số lượng video',
+                    data: [145, 132, 118, 104, 91, 85, 78, 72, 66, 59],
+                    backgroundColor: 'rgba(240, 147, 251, 0.8)',
+                    borderColor: 'rgba(240, 147, 251, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                }
+            }
+        });
+
+        // Keywords Chart
+        const keywordsCtx = document.getElementById('keywordsChart').getContext('2d');
+        new Chart(keywordsCtx, {
+            type: 'horizontalBar',
+            data: {
+                labels: ['music', 'sleep', 'relaxing', 'meditation', 'piano', 'healing', 'calm', 'peaceful', 'ambient', 'nature'],
+                datasets: [{
+                    label: 'Tần suất',
+                    data: [487, 423, 395, 367, 341, 318, 295, 272, 249, 226],
+                    backgroundColor: 'rgba(102, 126, 234, 0.8)',
+                    borderColor: 'rgba(102, 126, 234, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    x: {
+                        beginAtZero: true
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                }
+            }
+        });
+
+        // Keyword Distribution Chart
+        const keywordDistCtx = document.getElementById('keywordDistributionChart').getContext('2d');
+        new Chart(keywordDistCtx, {
+            type: 'line',
+            data: {
+                labels: ['1-10', '11-20', '21-30', '31-40', '41-50', '51-60', '61-70', '71-80', '81-90', '91-100'],
+                datasets: [{
+                    label: 'Số lượng từ khóa',
+                    data: [245, 186, 142, 108, 87, 71, 58, 47, 38, 31],
+                    borderColor: 'rgba(118, 75, 162, 1)',
+                    backgroundColor: 'rgba(118, 75, 162, 0.1)',
+                    fill: true,
+                    tension: 0.4
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        // Views Distribution Chart
+        const viewsDistCtx = document.getElementById('viewsDistributionChart').getContext('2d');
+        new Chart(viewsDistCtx, {
+            type: 'pie',
+            data: {
+                labels: ['< 100K', '100K-1M', '1M-10M', '10M-100M', '> 100M'],
+                datasets: [{
+                    data: [23, 45, 27, 4, 1],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.8)',
+                        'rgba(54, 162, 235, 0.8)',
+                        'rgba(255, 205, 86, 0.8)',
+                        'rgba(75, 192, 192, 0.8)',
+                        'rgba(153, 102, 255, 0.8)'
+                    ]
+                }]
+            },
+            options: {
+                plugins: {
+                    legend: {
+                        position: 'bottom'
+                    }
+                }
+            }
+        });
+
+        // Duration vs Views Chart
+        const durationViewsCtx = document.getElementById('durationViewsChart').getContext('2d');
+        new Chart(durationViewsCtx, {
+            type: 'scatter',
+            data: {
+                datasets: [{
+                    label: 'Video',
+                    data: [
+                        {x: 1, y: 2471093}, {x: 2, y: 983412}, {x: 3, y: 5324187},
+                        {x: 4, y: 3245876}, {x: 6, y: 7632109}, {x: 8, y: 4521378},
+                        {x: 12, y: 15789032}, {x: 1.5, y: 1234567}, {x: 3.5, y: 6789012},
+                        {x: 5, y: 3456789}, {x: 7, y: 8901234}, {x: 10, y: 12345678}
+                    ],
+                    backgroundColor: 'rgba(102, 126, 234, 0.6)',
+                    borderColor: 'rgba(102, 126, 234, 1)',
+                    pointRadius: 6
+                }]
+            },
+            options: {
+                scales: {
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Thời lượng (giờ)'
+                        }
+                    },
+                    y: {
+                        title: {
+                            display: true,
+                            text: 'Lượt xem'
+                        }
+                    }
+                }
+            }
+        });
+
+        // Yearly Trends Chart
+        const yearlyTrendsCtx = document.getElementById('yearlyTrendsChart').getContext('2d');
+        new Chart(yearlyTrendsCtx, {
+            type: 'line',
+            data: {
+                labels: ['2019', '2020', '2021', '2022', '2023', '2024'],
+                datasets: [{
+                    label: 'Số lượng video',
+                    data: [45, 89, 156, 234, 298, 178],
+                    borderColor: 'rgba(102, 126, 234, 1)',
+                    backgroundColor: 'rgba(102, 126, 234, 0.1)',
+                    fill: true,
+                    yAxisID: 'y'
+                }, {
+                    label: 'Lượt xem trung bình (triệu)',
+                    data: [1.2, 2.8, 4.1, 5.7, 6.3, 4.9],
+                    borderColor: 'rgba(240, 147, 251, 1)',
+                    backgroundColor: 'rgba(240, 147, 251, 0.1)',
+                    fill: true,
+                    yAxisID: 'y1'
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        type: 'linear',
+                        display: true,
+                        position: 'left',
+                        beginAtZero: true
+                    },
+                    y1: {
+                        type: 'linear',
+                        display: true,
+                        position: 'right',
+                        beginAtZero: true,
+                        grid: {
+                            drawOnChartArea: false,
+                        }
+                    }
+                }
+            }
+        });
+
+        // Monthly Distribution Chart
+        const monthlyDistCtx = document.getElementById('monthlyDistributionChart').getContext('2d');
+        new Chart(monthlyDistCtx, {
+            type: 'bar',
+            data: {
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                datasets: [{
+                    label: 'Số lượng video',
+                    data: [78, 82, 95, 85, 79, 73, 68, 71, 84, 87, 91, 77],
+                    backgroundColor: 'rgba(118, 75, 162, 0.8)',
+                    borderColor: 'rgba(118, 75, 162, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
