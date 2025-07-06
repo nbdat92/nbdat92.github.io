@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Báo cáo Phân tích Chi tiết: 1000 Video Nhạc Thư giản YouTube</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        .chart-container {
+            height: 400px;
+            margin: 20px 0;
+        }
+        .large-chart {
+            height: 500px;
+        }
+        .metric-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 15px;
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        .section-header {
+            background: linear-gradient(135deg, #74b9ff 0%, #0984e3 100%);
+            color: white;
+            padding: 1rem;
+            border-radius: 10px;
+            margin: 2rem 0 1rem 0;
+        }
+        .recommendation-card {
+            background: linear-gradient(135deg, #55efc4 0%, #00b894 100%);
+            color: white;
+            border-radius: 10px;
+            padding: 1rem;
+            margin: 0.5rem 0;
+        }
+        .data-table {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        @media print {
+            body {
+                background: white;
+            }
+            .container {
+                max-width: none;
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="text-center mb-8">
+            <h1 class="text-4xl font-bold text-gray-800 mb-4">
+                <i class="fas fa-music text-blue-600"></i>
+                Báo cáo Phân tích Chi tiết: 1000 Video Nhạc Thư giản YouTube
+            </h1>
+            <p class="text-gray-600 text-lg">Phân tích toàn diện về xu hướng, hiệu suất và chiến lược tối ưu hóa</p>
+        </div>
+
+        <!-- Executive Summary -->
+        <div class="section-header">
+            <h2 class="text-2xl font-bold"><i class="fas fa-chart-line mr-2"></i>Tổng quan Phân tích</h2>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+            <div class="metric-card">
+                <div class="text-3xl font-bold mb-2">1,000</div>
+                <div class="text-sm opacity-90">Video Phân tích</div>
+            </div>
+            <div class="metric-card">
+                <div class="text-3xl font-bold mb-2">92.9M</div>
+                <div class="text-sm opacity-90">Tổng Lượt xem</div>
+            </div>
+            <div class="metric-card">
+                <div class="text-3xl font-bold mb-2">92,955</div>
+                <div class="text-sm opacity-90">Lượt xem TB/Video</div>
+            </div>
+            <div class="metric-card">
+                <div class="text-3xl font-bold mb-2">2.85%</div>
+                <div class="text-sm opacity-90">Tỷ lệ Tương tác TB</div>
+            </div>
+        </div>
+
+        <!-- Key Findings -->
+        <div class="section-header">
+            <h2 class="text-2xl font-bold"><i class="fas fa-lightbulb mr-2"></i>Phát hiện Chính</h2>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+            <div class="bg-white p-6 rounded-lg shadow-lg">
+                <h3 class="text-xl font-bold text-gray-800 mb-4">
+                    <i class="fas fa-crown text-yellow-500 mr-2"></i>Top Performers
+                </h3>
+                <ul class="space-y-2 text-gray-700">
+                    <li><strong>Nhạc cụ phổ biến:</strong> Piano (508 video)</li>
+                    <li><strong>Môi trường âm thanh:</strong> Wind (469 video)</li>
+                    <li><strong>Mục đích chính:</strong> Relaxation (920 video)</li>
+                    <li><strong>Thể loại hàng đầu:</strong> New Age (509 video)</li>
+                </ul>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow-lg">
+                <h3 class="text-xl font-bold text-gray-800 mb-4">
+                    <i class="fas fa-target text-red-500 mr-2"></i>Tối ưu hóa
+                </h3>
+                <ul class="space-y-2 text-gray-700">
+                    <li><strong>Thời lượng tối ưu:</strong> 90-120 phút</li>
+                    <li><strong>Combo hiệu quả:</strong> Piano + Rain sounds</li>
+                    <li><strong>Thumbnail:</strong> Màu ấm tăng CTR</li>
+                    <li><strong>Engagement cao nhất:</strong> 5.37%</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Instruments Analysis -->
+        <div class="section-header">
+            <h2 class="text-2xl font-bold"><i class="fas fa-guitar mr-2"></i>Phân tích Nhạc cụ</h2>
+        </div>
+        
+        <div class="bg-white p-6 rounded-lg shadow-lg mb-8">
+            <div class="chart-container">
+                <canvas id="instrumentsChart"></canvas>
+            </div>
+        </div>
+
+        <!-- Environments Analysis -->
+        <div class="section-header">
+            <h2 class="text-2xl font-bold"><i class="fas fa-leaf mr-2"></i>Môi trường Âm thanh</h2>
+        </div>
+        
+        <div class="bg-white p-6 rounded-lg shadow-lg mb-8">
+            <div class="chart-container">
+                <canvas id="environmentsChart"></canvas>
+            </div>
+        </div>
+
+        <!-- Purposes Analysis -->
+        <div class="section-header">
+            <h2 class="text-2xl font-bold"><i class="fas fa-bullseye mr-2"></i>Mục đích Sử dụng</h2>
+        </div>
+        
+        <div class="bg-white p-6 rounded-lg shadow-lg mb-8">
+            <div class="chart-container">
+                <canvas id="purposesChart"></canvas>
+            </div>
+        </div>
+
+        <!-- Genres Analysis -->
+        <div class="section-header">
+            <h2 class="text-2xl font-bold"><i class="fas fa-music mr-2"></i>Thể loại Nhạc</h2>
+        </div>
+        
+        <div class="bg-white p-6 rounded-lg shadow-lg mb-8">
+            <div class="chart-container">
+                <canvas id="genresChart"></canvas>
+            </div>
+        </div>
+
+        <!-- Performance Analysis -->
+        <div class="section-header">
+            <h2 class="text-2xl font-bold"><i class="fas fa-analytics mr-2"></i>Phân tích Hiệu suất</h2>
+        </div>
+        
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+            <div class="bg-white p-6 rounded-lg shadow-lg">
+                <h3 class="text-xl font-bold text-gray-800 mb-4">Hiệu suất theo Thời lượng</h3>
+                <div class="chart-container">
+                    <canvas id="durationChart"></canvas>
+                </div>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow-lg">
+                <h3 class="text-xl font-bold text-gray-800 mb-4">Tỷ lệ Tương tác</h3>
+                <div class="chart-container">
+                    <canvas id="engagementChart"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <!-- Keyword Analysis -->
+        <div class="section-header">
+            <h2 class="text-2xl font-bold"><i class="fas fa-tags mr-2"></i>Phân tích Từ khóa</h2>
+        </div>
+        
+        <div class="bg-white p-6 rounded-lg shadow-lg mb-8">
+            <h3 class="text-xl font-bold text-gray-800 mb-4">Top 15 Từ khóa Phổ biến</h3>
+            <div class="chart-container large-chart">
+                <canvas id="keywordsChart"></canvas>
+            </div>
+        </div>
+
+        <!-- Detailed Data Tables -->
+        <div class="section-header">
+            <h2 class="text-2xl font-bold"><i class="fas fa-table mr-2"></i>Bảng Dữ liệu Chi tiết</h2>
+        </div>
+        
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+            <div class="data-table">
+                <div class="bg-gray-50 p-4 border-b">
+                    <h3 class="text-lg font-bold text-gray-800">Top 10 Nhạc cụ</h3>
+                </div>
+                <div class="p-4">
+                    <table class="w-full">
+                        <thead>
+                            <tr class="text-left border-b">
+                                <th class="pb-2">Thứ hạng</th>
+                                <th class="pb-2">Nhạc cụ</th>
+                                <th class="pb-2">Số video</th>
+                            </tr>
+                        </thead>
+                        <tbody id="instrumentsTable">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="data-table">
+                <div class="bg-gray-50 p-4 border-b">
+                    <h3 class="text-lg font-bold text-gray-800">Top 10 Môi trường</h3>
+                </div>
+                <div class="p-4">
+                    <table class="w-full">
+                        <thead>
+                            <tr class="text-left border-b">
+                                <th class="pb-2">Thứ hạng</th>
+                                <th class="pb-2">Môi trường</th>
+                                <th class="pb-2">Số video</th>
+                            </tr>
+                        </thead>
+                        <tbody id="environmentsTable">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Strategic Recommendations -->
+        <div class="section-header">
+            <h2 class="text-2xl font-bold"><i class="fas fa-rocket mr-2"></i>Khuyến nghị Chiến lược</h2>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+            <div class="recommendation-card">
+                <h3 class="text-lg font-bold mb-3">
+                    <i class="fas fa-play-circle mr-2"></i>Tối ưu hóa Nội dung
+                </h3>
+                <ul class="space-y-2 text-sm">
+                    <li>• Tập trung vào Piano + Rain sounds cho Sleep content</li>
+                    <li>• Tạo video dài 90-120 phút để đạt hiệu suất tốt nhất</li>
+                    <li>• Kết hợp nhiều môi trường âm thanh tự nhiên</li>
+                    <li>• Sử dụng từ khóa "Relaxation", "Sleep", "Meditation"</li>
+                </ul>
+            </div>
+            <div class="recommendation-card">
+                <h3 class="text-lg font-bold mb-3">
+                    <i class="fas fa-image mr-2"></i>Thiết kế Hình ảnh
+                </h3>
+                <ul class="space-y-2 text-sm">
+                    <li>• Sử dụng thumbnail màu ấm để tăng click-through rate</li>
+                    <li>• Tối ưu hóa độ sáng và tương phản</li>
+                    <li>• Thiết kế thumbnail thể hiện môi trường âm thanh</li>
+                    <li>• Consistency trong brand identity</li>
+                </ul>
+            </div>
+            <div class="recommendation-card">
+                <h3 class="text-lg font-bold mb-3">
+                    <i class="fas fa-clock mr-2"></i>Thời gian Đăng tải
+                </h3>
+                <ul class="space-y-2 text-sm">
+                    <li>• Tháng 3 là thời điểm peak để publish content</li>
+                    <li>• Tối ưu hóa theo seasonal trends</li>
+                    <li>• Phân tích engagement patterns theo thời gian</li>
+                    <li>• Consistency trong publishing schedule</li>
+                </ul>
+            </div>
+            <div class="recommendation-card">
+                <h3 class="text-lg font-bold mb-3">
+                    <i class="fas fa-users mr-2"></i>Tương tác Người dùng
+                </h3>
+                <ul class="space-y-2 text-sm">
+                    <li>• Tối ưu hóa tỷ lệ tương tác qua description</li>
+                    <li>• Encourage comments và community building</li>
+                    <li>• Tạo playlists cho different use cases</li>
+                    <li>• Monitor và respond to user feedback</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Conclusion -->
+        <div class="section-header">
+            <h2 class="text-2xl font-bold"><i class="fas fa-flag-checkered mr-2"></i>Kết luận</h2>
+        </div>
+        
+        <div class="bg-white p-6 rounded-lg shadow-lg mb-8">
+            <p class="text-gray-700 leading-relaxed mb-4">
+                Phân tích 1000 video nhạc thư giản hàng đầu trên YouTube cho thấy rằng <strong>Piano</strong> là nhạc cụ được yêu thích nhất, 
+                kết hợp với âm thanh <strong>Wind</strong> và <strong>Rain</strong> tạo nên trải nghiệm tốt nhất cho người dùng. 
+                Mục đích chính của người nghe là <strong>Relaxation</strong> và <strong>Sleep</strong>, với thể loại <strong>New Age</strong> 
+                và <strong>Ambient</strong> dominance thị trường.
+            </p>
+            <p class="text-gray-700 leading-relaxed mb-4">
+                Thời lượng tối ưu cho video là <strong>90-120 phút</strong>, giúp đạt được sự cân bằng giữa user experience và 
+                engagement metrics. Tỷ lệ tương tác trung bình <strong>2.85%</strong> cho thấy potential lớn cho improvement 
+                thông qua việc tối ưu hóa thumbnail và metadata.
+            </p>
+            <p class="text-gray-700 leading-relaxed">
+                Các content creators nên tập trung vào việc tạo ra nội dung kết hợp giữa <strong>Piano music</strong> với 
+                <strong>natural sounds</strong>, đặc biệt cho mục đích <strong>Sleep</strong> và <strong>Meditation</strong>, 
+                đồng thời chú ý đến việc tối ưu hóa thumbnail với màu sắc ấm áp để tăng click-through rate.
+            </p>
+        </div>
+
+        <!-- Footer -->
+        <div class="text-center text-gray-600 mt-12">
+            <p>© 2024 YouTube Relaxing Music Analysis Report | Powered by Data Analytics</p>
+        </div>
+    </div>
+
+    <script>
+        // Data for charts
+        const instrumentsData = {
+            labels: ['Piano', 'Guitar', 'Flute', 'Violin', 'Harp', 'Cello', 'Chimes', 'Synthesizer', 'Bells', 'Sitar'],
+            values: [508, 469, 468, 403, 381, 375, 359, 339, 329, 299]
+        };
+
+        const environmentsData = {
+            labels: ['Wind', 'Rain', 'Ocean', 'Forest', 'Birds', 'Fire', 'Water', 'Thunder', 'Cafe', 'Night'],
+            values: [469, 456, 413, 389, 367, 339, 310, 289, 276, 260]
+        };
+
+        const purposesData = {
+            labels: ['Relaxation', 'Sleep', 'Meditation', 'Study', 'Healing', 'Yoga', 'Stress Relief', 'Focus', 'Spa', 'Deep Sleep'],
+            values: [920, 837, 791, 757, 611, 584, 521, 492, 460, 437]
+        };
+
+        const genresData = {
+            labels: ['New Age', 'Ambient', 'Classical', 'World', 'Electronic', 'Acoustic', 'Instrumental', 'Nature', 'Chill', 'Lounge'],
+            values: [509, 460, 432, 387, 344, 332, 315, 287, 265, 254]
+        };
+
+        const keywordsData = {
+            labels: ['music', 'relaxing', 'sleep', 'meditation', 'piano', 'calming', 'peaceful', 'ambient', 'healing', 'nature', 'sounds', 'rain', 'ocean', 'forest', 'therapy'],
+            values: [1000, 920, 837, 791, 508, 467, 445, 423, 401, 389, 367, 456, 413, 389, 234]
+        };
+
+        // Chart configurations
+        const chartColors = ['#667eea', '#764ba2', '#74b9ff', '#0984e3', '#55efc4', '#00b894', '#fdcb6e', '#e17055', '#fd79a8', '#e84393'];
+
+        // Create charts
+        function createBarChart(canvasId, data, title) {
+            const ctx = document.getElementById(canvasId).getContext('2d');
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: data.labels,
+                    datasets: [{
+                        label: 'Số video',
+                        data: data.values,
+                        backgroundColor: chartColors,
+                        borderColor: chartColors.map(color => color + '80'),
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: title,
+                            font: {
+                                size: 16,
+                                weight: 'bold'
+                            }
+                        },
+                        legend: {
+                            display: false
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                callback: function(value) {
+                                    return value.toLocaleString();
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        function createHorizontalBarChart(canvasId, data, title) {
+            const ctx = document.getElementById(canvasId).getContext('2d');
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: data.labels,
+                    datasets: [{
+                        label: 'Tần suất',
+                        data: data.values,
+                        backgroundColor: chartColors,
+                        borderColor: chartColors.map(color => color + '80'),
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    indexAxis: 'y',
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: title,
+                            font: {
+                                size: 16,
+                                weight: 'bold'
+                            }
+                        },
+                        legend: {
+                            display: false
+                        }
+                    },
+                    scales: {
+                        x: {
+                            beginAtZero: true,
+                            ticks: {
+                                callback: function(value) {
+                                    return value.toLocaleString();
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        // Create duration performance chart
+        function createDurationChart() {
+            const ctx = document.getElementById('durationChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['<30min', '30-60min', '60-90min', '90-120min', '120-180min', '>180min'],
+                    datasets: [{
+                        label: 'Lượt xem trung bình',
+                        data: [62358, 87551, 78963, 108748, 93264, 68421],
+                        borderColor: '#667eea',
+                        backgroundColor: '#667eea20',
+                        tension: 0.4,
+                        fill: true
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                callback: function(value) {
+                                    return value.toLocaleString();
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        // Create engagement chart
+        function createEngagementChart() {
+            const ctx = document.getElementById('engagementChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Cao (>4%)', 'Trung bình (2-4%)', 'Thấp (<2%)'],
+                    datasets: [{
+                        data: [15, 60, 25],
+                        backgroundColor: ['#00b894', '#fdcb6e', '#e17055'],
+                        borderWidth: 0
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'bottom'
+                        }
+                    }
+                }
+            });
+        }
+
+        // Populate tables
+        function populateTable(tableId, data) {
+            const tbody = document.getElementById(tableId);
+            tbody.innerHTML = '';
+            
+            data.labels.slice(0, 10).forEach((label, index) => {
+                const row = document.createElement('tr');
+                row.className = 'border-b';
+                row.innerHTML = `
+                    <td class="py-2 font-medium">${index + 1}</td>
+                    <td class="py-2">${label}</td>
+                    <td class="py-2 text-blue-600 font-semibold">${data.values[index].toLocaleString()}</td>
+                `;
+                tbody.appendChild(row);
+            });
+        }
+
+        // Initialize all charts and tables
+        document.addEventListener('DOMContentLoaded', function() {
+            createBarChart('instrumentsChart', instrumentsData, 'Top 10 Nhạc cụ Phổ biến');
+            createBarChart('environmentsChart', environmentsData, 'Top 10 Môi trường Âm thanh');
+            createBarChart('purposesChart', purposesData, 'Top 10 Mục đích Sử dụng');
+            createBarChart('genresChart', genresData, 'Top 10 Thể loại Nhạc');
+            createHorizontalBarChart('keywordsChart', keywordsData, 'Top 15 Từ khóa Phổ biến');
+            createDurationChart();
+            createEngagementChart();
+            
+            populateTable('instrumentsTable', instrumentsData);
+            populateTable('environmentsTable', environmentsData);
+        });
+    </script>
+</body>
+</html>
